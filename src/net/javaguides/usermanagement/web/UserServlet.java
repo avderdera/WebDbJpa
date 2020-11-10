@@ -25,6 +25,8 @@ import net.javaguides.usermanagement.model.User;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao;
+	private static int currBarcode = 0;
+	private static String Dupl;
 	
 	public void init() {
 		userDao = new UserDao();
@@ -69,8 +71,10 @@ public class UserServlet extends HttpServlet {
 
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		List<User> listUser = userDao.getAllUser();
-		request.setAttribute("listUser", listUser);
+		User product = userDao.getUser(currBarcode);
+		System.out.println(Dupl);
+		request.setAttribute("Error", Dupl);
+		request.setAttribute("Product", product);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -94,6 +98,7 @@ public class UserServlet extends HttpServlet {
 	private void insertUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int barcode = Integer.parseInt(request.getParameter("barcode"));
+		currBarcode = barcode;
 		String name = request.getParameter("name");
 		String color = request.getParameter("color");
 		String description = request.getParameter("description");
@@ -111,6 +116,9 @@ public class UserServlet extends HttpServlet {
 		User user = new User(barcode, name, color, description);
 		userDao.updateUser(user);
 		response.sendRedirect("list");
+	}
+	public void duplSet(String input) {
+		Dupl = input;
 	}
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 

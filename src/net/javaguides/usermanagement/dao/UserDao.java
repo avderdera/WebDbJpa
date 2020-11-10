@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 
 import net.javaguides.usermanagement.model.User;
 import net.javaguides.usermanagement.utl.HibernateUtil;
+import net.javaguides.usermanagement.web.UserServlet;
 
 /**
  * CRUD database operations
@@ -14,6 +15,7 @@ import net.javaguides.usermanagement.utl.HibernateUtil;
  *
  */
 public class UserDao {
+	UserServlet temp = new UserServlet();
 	
 	/**
 	 * Save User
@@ -28,9 +30,12 @@ public class UserDao {
 			session.save(user);
 			// commit transaction
 			transaction.commit();
+			temp.duplSet("");
 		} catch (Exception e) {
 			 System.out.println("userDao");
-
+			
+			 temp.duplSet("!!! This product already exists !!!");
+			  
 			if (transaction != null) {
 				transaction.rollback();
 			}
@@ -53,7 +58,7 @@ public class UserDao {
 			transaction.commit();
 		} catch (Exception e) {
 			 System.out.println("userDao2");
-
+			 
 			if (transaction != null) {
 				transaction.rollback();
 			}

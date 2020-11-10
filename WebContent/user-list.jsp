@@ -46,6 +46,7 @@
 	
     <div align="center">
         <table border="1" cellpadding="5">
+        	<h2><%=request.getAttribute("Error") %></h2>
             <caption><h4>List of Product Atributes</h4></caption>
             <tr>
                 <th>Barcode</th>
@@ -53,15 +54,16 @@
                 <th>Color</th>
                 <th>Description</th>
             </tr>
-            <c:forEach var="user" items="${listUser}">
+           
                 <tr>
-                    <td><c:out value="${user.barcode}" /></td>
-                    <td><c:out value="${user.name}" /></td>
-                    <td><c:out value="${user.color}" /></td>
-                    <td><c:out value="${user.description}" /></td>
+                 <c:set var="product" scope="session" value="${Product}"/>
+                    <td><c:out value="${product.barcode}" /></td>
+                    <td><c:out value="${product.name}" /></td>
+                    <td><c:out value="${product.color}" /></td>
+                    <td><c:out value="${product.description}" /></td>
                   
                 </tr>
-            </c:forEach>
+            
         </table>
     </div>	
 </body>
