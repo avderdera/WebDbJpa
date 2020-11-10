@@ -5,23 +5,23 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import net.javaguides.usermanagement.model.User;
+import net.javaguides.usermanagement.model.Product;
 import net.javaguides.usermanagement.utl.HibernateUtil;
-import net.javaguides.usermanagement.web.UserServlet;
+import net.javaguides.usermanagement.web.ProductServlet;
 
 /**
  * CRUD database operations
  * @author Ramesh Fadatare
  *
  */
-public class UserDao {
-	UserServlet temp = new UserServlet();
+public class ProductDao {
+	ProductServlet temp = new ProductServlet();
 	
 	/**
 	 * Save User
 	 * @param user
 	 */
-	public void saveUser(User user) {
+	public void saveUser(Product user) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
@@ -47,7 +47,7 @@ public class UserDao {
 	 * Update User
 	 * @param user
 	 */
-	public void updateUser(User user) {
+	public void updateUser(Product user) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
@@ -78,7 +78,7 @@ public class UserDao {
 			transaction = session.beginTransaction();
 
 			// Delete a user object
-			User user = session.get(User.class, barcode);
+			Product user = session.get(Product.class, barcode);
 			if (user != null) {
 				session.delete(user);
 				System.out.println("user is deleted");
@@ -101,15 +101,15 @@ public class UserDao {
 	 * @param id
 	 * @return
 	 */
-	public User getUser(int barcode) {
+	public Product getUser(int barcode) {
 
 		Transaction transaction = null;
-		User user = null;
+		Product user = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
-			user = session.get(User.class, barcode);
+			user = session.get(Product.class, barcode);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -128,10 +128,10 @@ public class UserDao {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<User> getAllUser() {
+	public List<Product> getAllUser() {
 
 		Transaction transaction = null;
-		List<User> listOfUser = null;
+		List<Product> listOfUser = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();

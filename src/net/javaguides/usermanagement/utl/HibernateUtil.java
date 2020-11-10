@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import net.javaguides.usermanagement.model.User;
+import net.javaguides.usermanagement.model.Product;
 
 /**
  * Java based configuration
@@ -41,7 +41,7 @@ public class HibernateUtil {
 				settings.put(Environment.HBM2DDL_AUTO, "create");
 
 				configuration.setProperties(settings);
-				configuration.addAnnotatedClass(User.class);
+				configuration.addAnnotatedClass(Product.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="products")
-public class User {
+public class Product {
 	
 	@Id
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class User {
 	protected String description;
 	
 	
-	public User() {
+	public Product() {
 	}
 	/*
 	public User(String name, String color, String description) {
@@ -43,7 +43,7 @@ public class User {
 		this.description = description;
 	}
 */
-	public User(int barcode, String name, String color, String description) {
+	public Product(int barcode, String name, String color, String description) {
 		super();
 		this.barcode = barcode;
 		this.name = name;

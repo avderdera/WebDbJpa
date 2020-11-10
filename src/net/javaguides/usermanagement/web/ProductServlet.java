@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.javaguides.usermanagement.dao.UserDao;
-import net.javaguides.usermanagement.model.User;
+import net.javaguides.usermanagement.dao.ProductDao;
+import net.javaguides.usermanagement.model.Product;
 
 /**
  * ControllerServlet.java
@@ -22,14 +22,14 @@ import net.javaguides.usermanagement.model.User;
  */
 
 @WebServlet("/")
-public class UserServlet extends HttpServlet {
+public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserDao userDao;
+	private ProductDao userDao;
 	private static int currBarcode = 0;
 	private static String Dupl;
 	
 	public void init() {
-		userDao = new UserDao();
+		userDao = new ProductDao();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,12 +49,6 @@ public class UserServlet extends HttpServlet {
 			case "/insert":
 				insertUser(request, response);
 				break;
-			case "/delete":
-				deleteUser(request, response);
-				break;
-			case "/edit":
-				showEditForm(request, response);
-				break;
 			case "/update":
 				updateUser(request, response);
 				break;
@@ -71,29 +65,20 @@ public class UserServlet extends HttpServlet {
 
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		User product = userDao.getUser(currBarcode);
+		Product product = userDao.getUser(currBarcode);
 		System.out.println(Dupl);
 		request.setAttribute("Error", Dupl);
 		request.setAttribute("Product", product);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("productAtr.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("productForm.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		int barcode = Integer.parseInt(request.getParameter("barcode"));
-		User existingUser = userDao.getUser(barcode);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-		request.setAttribute("user", existingUser);
-		dispatcher.forward(request, response);
-
-	}
 
 	private void insertUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
@@ -102,7 +87,7 @@ public class UserServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String color = request.getParameter("color");
 		String description = request.getParameter("description");
-		User newUser = new User(barcode, name, color, description);
+		Product newUser = new Product(barcode, name, color, description);
 		userDao.saveUser(newUser);
 		response.sendRedirect("list");
 	}
@@ -113,7 +98,7 @@ public class UserServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String color = request.getParameter("color");
 		String description = request.getParameter("description");
-		User user = new User(barcode, name, color, description);
+		Product user = new Product(barcode, name, color, description);
 		userDao.updateUser(user);
 		response.sendRedirect("list");
 	}
@@ -121,10 +106,5 @@ public class UserServlet extends HttpServlet {
 		Dupl = input;
 	}
 
-	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 
-			throws SQLException, IOException {
-		int barcode = Integer.parseInt(request.getParameter("barcode"));
-		userDao.deleteUser(barcode);
-		response.sendRedirect("list");
-	}
+
 }

@@ -40,26 +40,17 @@
 	
 	</style>
 <body>
-		<h1>Barcode validation</h1>
-       
-	
     <div align="center">
-		<c:if test="${user != null}">
-			<form action="update" method="post">
-        </c:if>
         <c:if test="${user == null}">
 			<form action="insert" method="post">
         </c:if>
         <table border="1" cellpadding="5">
             <caption>
-            	<h2>
-            		<c:if test="${user != null}">
-            			Welcome Back
-            		</c:if>
+            	<h1>
             		<c:if test="${user == null}">
             			Add New Product
             		</c:if>
-            	</h2>
+            	</h1>
             </caption>
              
         		<c:if test="${user != null}">
