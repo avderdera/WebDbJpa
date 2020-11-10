@@ -1,8 +1,7 @@
-package net.javaguides.usermanagement.web;
+package net.javaguides.productmanagement.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.javaguides.usermanagement.dao.ProductDao;
-import net.javaguides.usermanagement.model.Product;
+import net.javaguides.productmanagement.dao.ProductDao;
+import net.javaguides.productmanagement.model.Product;
 
 /**
  * ControllerServlet.java

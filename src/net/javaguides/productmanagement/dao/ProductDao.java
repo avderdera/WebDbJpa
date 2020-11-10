@@ -1,13 +1,13 @@
-package net.javaguides.usermanagement.dao;
+package net.javaguides.productmanagement.dao;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import net.javaguides.usermanagement.model.Product;
-import net.javaguides.usermanagement.utl.HibernateUtil;
-import net.javaguides.usermanagement.web.ProductServlet;
+import net.javaguides.productmanagement.utl.HibernateUtil;
+import net.javaguides.productmanagement.web.ProductServlet;
+import net.javaguides.productmanagement.model.Product;
 
 /**
  * CRUD database operations

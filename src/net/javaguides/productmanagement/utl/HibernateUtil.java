@@ -1,4 +1,4 @@
-package net.javaguides.usermanagement.utl;
+package net.javaguides.productmanagement.utl;
 
 import java.util.Properties;
 
@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import net.javaguides.usermanagement.model.Product;
+import net.javaguides.productmanagement.model.Product;
 
 /**
  * Java based configuration
