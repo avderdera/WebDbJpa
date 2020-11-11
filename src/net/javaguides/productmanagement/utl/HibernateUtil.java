@@ -12,7 +12,7 @@ import net.javaguides.productmanagement.model.Product;
 
 /**
  * Java based configuration
- * @author ramesh Fadatare
+ * @author Nterntera Antel-Vissarion
  *
  */
 public class HibernateUtil {
@@ -22,7 +22,6 @@ public class HibernateUtil {
 		
 
 		if (sessionFactory == null) {
-			System.out.println("inHi");
 			try {
 				Configuration configuration = new Configuration();
 				 System.out.println("outHi");
@@ -42,7 +41,8 @@ public class HibernateUtil {
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Product.class);
-
+				
+				// Creates Hibernate Java Config serviceRegistry
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
 				System.out.println("Hibernate Java Config serviceRegistry created");
@@ -50,7 +50,6 @@ public class HibernateUtil {
 				return sessionFactory;
 
 			} catch (Exception e) {
-				 System.out.println("hiber");
 				e.printStackTrace();
 			}
 		}

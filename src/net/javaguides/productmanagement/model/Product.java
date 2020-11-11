@@ -6,9 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * User.java
- * This is a model class represents a User entity
- * @author Ramesh Fadatare
+ * Product.java
+ * This is a model class represents a Product entity
+ * @author Nterntera Antel-Vissarion
  *
  */
 
@@ -17,7 +17,6 @@ import javax.persistence.Table;
 public class Product {
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="barcode")
 	protected int barcode;
 	
@@ -33,14 +32,7 @@ public class Product {
 	
 	public Product() {
 	}
-	/*
-	public User(String name, String color, String description) {
-		super();
-		this.name = name;
-		this.color = color;
-		this.description = description;
-	}
-*/
+	
 	public Product(int barcode, String name, String color, String description) {
 		super();
 		this.barcode = barcode;

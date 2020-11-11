@@ -24,16 +24,19 @@ public class ProductDao {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
-			// save the student object
+			// save the product object
 			session.save(product);
 			// commit transaction
 			transaction.commit();
+			// erase the duplicate notification
 			temp.duplSet("");
+			// turn off the notification
 			temp.dublSet(false);
 		} catch (Exception e) {
-			 System.out.println("productDao");
 			
+			 // set notification message
 			 temp.duplSet("!!! This product already exists !!!");
+			 // turn on notification message
 			 temp.dublSet(true);
 			  
 			if (transaction != null) {
@@ -52,12 +55,11 @@ public class ProductDao {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
-			// save the student object
+			// save the product object
 			session.update(product);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
-			 System.out.println("productDao2");
 			 
 			if (transaction != null) {
 				transaction.rollback();
@@ -78,12 +80,11 @@ public class ProductDao {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
-			// get an user object
+			// get an product object
 			user = session.get(Product.class, barcode);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
-			 System.out.println("productDao3");
 
 			if (transaction != null) {
 				transaction.rollback();
