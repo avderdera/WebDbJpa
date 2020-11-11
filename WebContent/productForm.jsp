@@ -27,7 +27,7 @@
 	table {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
-  		width: 100%;
+  		width: 40%;
   		color: rgb(255, 255, 255);
 	}
 
@@ -41,52 +41,33 @@
 	</style>
 <body>
     <div align="center">
-        <c:if test="${user == null}">
-			<form action="insert" method="post">
-        </c:if>
-        <table border="1" cellpadding="5">
+			<form action="update" method="post">
+        
+        <table border="1" cellpadding="5" bgcolor="#154c63">
             <caption>
-            	<h1>
-            		<c:if test="${user == null}">
-            			Add New Product
-            		</c:if>
-            	</h1>
-            </caption>
-             
-        		<c:if test="${user != null}">
-        			<input type="hidden" name="barcode" value="<c:out value='${user.barcode}' />" />
-        		</c:if>      
-        		     
-           <tr>
-                <th>Barcode: </th>
-                <td>
-                	<input type="text" name="barcode" size="45"
-                			value="<c:out value='${user.barcode}' />"
-                		/>
-                </td>
-            </tr>
-           
+            	<h1> Add New Products Attributes</h1>
+            </caption>         
             <tr>
                 <th>Name: </th>
                 <td>
-                	<input type="text" name="name" size="45"
-                			value="<c:out value='${user.name}' />"
+                	<input type="text" name="name" size="50"
+                			value="<c:out value='${product.name}' />"
                 		/>
                 </td>
             </tr>
             <tr>
                 <th>Color: </th>
                 <td>
-                	<input type="text" name="color" size="45"
-                			value="<c:out value='${user.color}' />"
+                	<input type="text" name="color" size="15"
+                			value="<c:out value='${product.color}' />"
                 	/>
                 </td>
             </tr>
             <tr>
                 <th>Description: </th>
                 <td>
-                	<input type="text" name="description" size="45"
-                			value="<c:out value='${user.description}' />"
+                	<input type="text" name="description" size="50"
+                			value="<c:out value='${product.description}' />"
                 	/>
                 </td>
             </tr>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.javaguides.productmanagement.dao.ProductDao;
 import net.javaguides.productmanagement.model.Product;
 
+
 /**
  * ControllerServlet.java
  * This servlet acts as a page controller for the application, handling all
@@ -23,12 +24,13 @@ import net.javaguides.productmanagement.model.Product;
 @WebServlet("/")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ProductDao userDao;
+	private ProductDao productDao;
 	private static int currBarcode = 0;
 	private static String Dupl;
+	private static boolean dubl;
 	
 	public void init() {
-		userDao = new ProductDao();
+		productDao = new ProductDao();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,25 +48,25 @@ public class ProductServlet extends HttpServlet {
 				showNewForm(request, response);
 				break;
 			case "/insert":
-				insertUser(request, response);
+				insertProduct(request, response);
 				break;
 			case "/update":
-				updateUser(request, response);
+				updateProduct(request, response);
 				break;
 			default:
-				listUser(request, response);
+				showProduct(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
-			 System.out.println("userHI");
+			 System.out.println("productHI");
 
 			throw new ServletException(ex);
 		}
 	}
 
-	private void listUser(HttpServletRequest request, HttpServletResponse response)
+	private void showProduct(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		Product product = userDao.getUser(currBarcode);
+		Product product = productDao.getProduct(currBarcode);
 		System.out.println(Dupl);
 		request.setAttribute("Error", Dupl);
 		request.setAttribute("Product", product);
@@ -74,35 +76,44 @@ public class ProductServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("productForm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
 		dispatcher.forward(request, response);
 	}
-
-
-	private void insertUser(HttpServletRequest request, HttpServletResponse response) 
+	private void insertProduct(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int barcode = Integer.parseInt(request.getParameter("barcode"));
 		currBarcode = barcode;
+		String name = null;
+		String color = null;
+		String description = null;
+		Product newProduct = new Product(barcode, name, color, description);
+		productDao.saveProduct(newProduct);
+		if(dubl) {
+			dubl = false;
+			response.sendRedirect("list");
+		}else {
+		response.sendRedirect("productForm.jsp");
+		}
+		}
+	private void updateProduct(HttpServletRequest request, HttpServletResponse response) 
+			throws SQLException, IOException {
+		
+		int barcode = currBarcode;
 		String name = request.getParameter("name");
 		String color = request.getParameter("color");
 		String description = request.getParameter("description");
-		Product newUser = new Product(barcode, name, color, description);
-		userDao.saveUser(newUser);
+		Product product = new Product(barcode, name, color, description);
+		productDao.updateProduct(product);
 		response.sendRedirect("list");
 	}
 
-	private void updateUser(HttpServletRequest request, HttpServletResponse response) 
-			throws SQLException, IOException {
-		int barcode = Integer.parseInt(request.getParameter("barcode"));
-		String name = request.getParameter("name");
-		String color = request.getParameter("color");
-		String description = request.getParameter("description");
-		Product user = new Product(barcode, name, color, description);
-		userDao.updateUser(user);
-		response.sendRedirect("list");
-	}
+
 	public void duplSet(String input) {
 		Dupl = input;
+	}
+	public void dublSet(boolean temp) {
+		
+		dubl = temp;
 	}
 
 

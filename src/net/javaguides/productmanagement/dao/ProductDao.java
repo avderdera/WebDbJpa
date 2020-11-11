@@ -1,7 +1,5 @@
 package net.javaguides.productmanagement.dao;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -11,30 +9,32 @@ import net.javaguides.productmanagement.model.Product;
 
 /**
  * CRUD database operations
- * @author Ramesh Fadatare
+ * @author Nterntera Antel-Vissarion
  *
  */
 public class ProductDao {
 	ProductServlet temp = new ProductServlet();
 	
 	/**
-	 * Save User
-	 * @param user
+	 * Save Product
+	 * @param product
 	 */
-	public void saveUser(Product user) {
+	public void saveProduct(Product product) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
-			session.save(user);
+			session.save(product);
 			// commit transaction
 			transaction.commit();
 			temp.duplSet("");
+			temp.dublSet(false);
 		} catch (Exception e) {
-			 System.out.println("userDao");
+			 System.out.println("productDao");
 			
 			 temp.duplSet("!!! This product already exists !!!");
+			 temp.dublSet(true);
 			  
 			if (transaction != null) {
 				transaction.rollback();
@@ -44,20 +44,20 @@ public class ProductDao {
 	}
 
 	/**
-	 * Update User
-	 * @param user
+	 * Update Product
+	 * @param product
 	 */
-	public void updateUser(Product user) {
+	public void updateProduct(Product product) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
-			session.update(user);
+			session.update(product);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
-			 System.out.println("userDao2");
+			 System.out.println("productDao2");
 			 
 			if (transaction != null) {
 				transaction.rollback();
@@ -67,41 +67,11 @@ public class ProductDao {
 	}
 
 	/**
-	 * Delete User
-	 * @param id
-	 */
-	public void deleteUser(int barcode) {
-
-		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
-			transaction = session.beginTransaction();
-
-			// Delete a user object
-			Product user = session.get(Product.class, barcode);
-			if (user != null) {
-				session.delete(user);
-				System.out.println("user is deleted");
-			}
-
-			// commit transaction
-			transaction.commit();
-		} catch (Exception e) {
-			 System.out.println("userDao3");
-
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Get User By ID
-	 * @param id
+	 * Get Product By barcode
+	 * @param barcode
 	 * @return
 	 */
-	public Product getUser(int barcode) {
+	public Product getProduct(int barcode) {
 
 		Transaction transaction = null;
 		Product user = null;
@@ -113,7 +83,7 @@ public class ProductDao {
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
-			 System.out.println("userDao4");
+			 System.out.println("productDao3");
 
 			if (transaction != null) {
 				transaction.rollback();
@@ -122,33 +92,5 @@ public class ProductDao {
 		}
 		return user;
 	}
-	
-	/**
-	 * Get all Users
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Product> getAllUser() {
 
-		Transaction transaction = null;
-		List<Product> listOfUser = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			// start a transaction
-			transaction = session.beginTransaction();
-			// get an user object
-			System.out.println("transaction ok");
-			listOfUser = session.createQuery("from User").getResultList();
-			System.out.println("listOfUsers ok");
-			// commit transaction
-			transaction.commit();
-		} catch (Exception e) {
-			 System.out.println("userDao5");
-
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
-		return listOfUser;
-	}
 }

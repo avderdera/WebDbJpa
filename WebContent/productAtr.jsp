@@ -47,7 +47,7 @@
     <div align="center">
         <table border="1" cellpadding="5">
         	<h2><%=request.getAttribute("Error") %></h2>
-            <caption><h4>List of Product Atributes</h4></caption>
+            <caption><h3>List of Product Atributes</h3></caption>
             <tr>
                 <th>Barcode</th>
                 <th>Name</th>
@@ -55,7 +55,7 @@
                 <th>Description</th>
             </tr>
            
-                <tr>
+                <tr bgcolor="#154c63">
                  <c:set var="product" scope="session" value="${Product}"/>
                     <td><c:out value="${product.barcode}" /></td>
                     <td><c:out value="${product.name}" /></td>

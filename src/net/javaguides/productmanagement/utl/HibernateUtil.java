@@ -29,7 +29,7 @@ public class HibernateUtil {
 				// Hibernate settings equivalent to hibernate.cfg.xml's properties
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/www?useSSL=false");
+				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/WWW?useSSL=false");
 				settings.put(Environment.USER, "root");
 				settings.put(Environment.PASS, "@Trololo69");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
@@ -38,7 +38,7 @@ public class HibernateUtil {
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				settings.put(Environment.HBM2DDL_AUTO, "create");
+				settings.put(Environment.HBM2DDL_AUTO, "none");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Product.class);
