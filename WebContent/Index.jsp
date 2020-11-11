@@ -42,28 +42,28 @@
 	</style> 
 <body>
 	<div align="center">
+		<form action="insert" method="post">
         
-			<form action="insert" method="post">
-        
-        <table border="1" cellpadding="5" >
-            <caption>
-            	<h1>Add New Product</h1>
-            	<p>(At most 10 integers)</p>
-            </caption>	     
-           <tr bgcolor="#154c63">
-                <th>Barcode: </th>
-                <td>
+        	<table border="1" cellpadding="5" >
+            	<caption>
+            		<h1>Add New Product</h1>
+            		<p>(At most 10 integers)</p>
+            	</caption>	     
+           		<tr bgcolor="#154c63">
+                	<th>Barcode: </th>
+                	<td>
                 	<input type="text" name="barcode" size="15"
                 			value="<c:out value='${product.barcode}' />"
                 		/>
-                </td>
+                	</td>
+                </tr>
                 <tr bgcolor="#154c63">
             	<td colspan="5" align="center">
             		<input type="submit" value="Check" />
             	</td>
-            </tr>
-            </tr>
-        </table>
+           		 </tr>
+       		 </table>
+        </form>
     </div>	
 
 </body>
