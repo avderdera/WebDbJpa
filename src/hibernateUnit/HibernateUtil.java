@@ -1,4 +1,4 @@
-package net.javaguides.productmanagement.utl;
+package hibernateUnit;
 
 import java.util.Properties;
 
@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import net.javaguides.productmanagement.model.Product;
+import archetype.Product;
 
 /**
  * Java based configuration

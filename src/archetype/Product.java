@@ -1,4 +1,4 @@
-package net.javaguides.productmanagement.model;
+package archetype;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

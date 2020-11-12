@@ -1,4 +1,4 @@
-package net.javaguides.productmanagement.web;
+package webServlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.javaguides.productmanagement.dao.ProductDao;
-import net.javaguides.productmanagement.model.Product;
+import archetype.Product;
+import daoUnit.ProductDao;
 
 
 /**
